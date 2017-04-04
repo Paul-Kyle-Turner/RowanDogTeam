@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-brown.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="styles.css">
+<link href="ProgressBar/ProgressBar.css" rel="stylesheet" />
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+
+<title>Parking Lot Counter</title>
+<link rel="stylesheet" href="ProgressBar/ProgressBar.css" />
+</head>
+
+<div
+<body>
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="C:\Users\Alex\Documents\SoftwareEngineering/index.html" class="w3-bar-item w3-button w3-hide-small w3-hover-yellow">About</a>
+    <a href="C:\Users\Alex\Documents\SoftwareEngineering/lots.html" class="w3-bar-item w3-button w3-hide-small w3-hover-yellow">Lots</a>    
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-yellow">Admin</a>
+ 
+  </div>
+
+
+</div>
+
+
+
+
+<div id="body">
+	<div id="barContainer"></div>
+
+</div>
+
+<style type="text/css">
+
+body, html
+{
+	height: calc(100% - 30px);
+}
+
+
+
+</style>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="ProgressBar/ProgressBar.js"></script>
+
+<script>
+function sortByOccupancy(a, b)
+{
+	if(a.Occupancy / a.Capacity < b.Occupancy / b.Capacity)
+	{
+		return -1;
+	}
+	else if(a.Occupancy / a.Capacity > b.Occupancy / b.Capacity)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+$(document).ready(function()
+{
+	$.get("http://aaron.aaronrudolph.com/json_download.php").done(function(data)
+	{
+		
+		data.sort(sortByOccupancy);
+	
+		for(var i = 0; i < data.length; i ++)
+		{
+			var globalContainer = $("<div>").attr("class", "pBar").text(data[i].LotID +" (" + data[i].Occupancy + "/" + data[i].Capacity + ")");
+			var barContainer = $("<div>");
+			
+			globalContainer.append(barContainer);
+			
+			$("#barContainer").append(globalContainer);
+			var progBar = new ProgressBar(barContainer[0], "25%");
+			progBar.setValue((parseFloat(data[i].Occupancy) / parseFloat(data[i].Capacity)) * 100);
+		}
+
+	});
+
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+body{
+    padding-top: 32px;
+}
+
+#body
+{
+	width: calc(100% - 200px);
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #eee;
+	height: 100%;
+	padding: 20px;
+}
