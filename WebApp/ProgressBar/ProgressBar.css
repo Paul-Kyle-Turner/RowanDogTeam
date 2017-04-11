@@ -4,10 +4,11 @@
 {
 	/* Default styles for progress bar container */
 	background-color: #aaa;
-	height: 1em;
+	height: 3em;
 }
 .pBar
 {
 	/* Additional styling for the progress bar */
 }
+
 
