@@ -1,5 +1,6 @@
 body{
-    padding-top: 32px;
+    padding-top: 43px;
+	background-color: white;
 }
 
 #body
@@ -10,4 +11,5 @@ body{
 	background-color: #eee;
 	height: 100%;
 	padding: 20px;
+	font-size: 30px;
 }
